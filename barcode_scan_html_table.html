@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Barcode Scanner Table
+        </title>
+        <style>
+            .remove-button {
+            cursor: pointer;
+            color: red;
+        }
+        </style>
+        <!-- jQuery -->
+        <script charset="utf8" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>
+            Barcode Scanner Table
+        </h1>
+        <input id="barcodeInput" placeholder="Scan Barcode" type="text"/>
+        <table border="1" id="barcodeInputTable">
+            <thead>
+                <tr>
+                    <th>
+                        Barcode
+                    </th>
+                    <th>
+                        Item SKU
+                    </th>
+                    <th>
+                        Weight (Kgs)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        Total Pcs:
+                    </td>
+                    <td id="totalPcs">
+                        0
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Total Weight:
+                    </td>
+                    <td id="totalWeight">
+                        0
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <script>
+            function removeRow(button) {
+                      const row = $(button).closest('tr');
+                      row.remove();
+                      calculateTotalWeight();
+              }
+              $('#barcodeInput').focus(); // Automatically focus on the input field
+
+              $('#barcodeInput').on('change', function() {
+                  const scannedBarcode = $(this).val().trim();
+                  const prefix = scannedBarcode.substring(0, 2);
+                  const itemSku = scannedBarcode.substring(2, 7);
+                  const weightInGrams = parseInt(scannedBarcode.substring(7, 12));
+                  const weightInKgs = (weightInGrams / 1000).toFixed(3);
+
+                  const newRow = `
+                    <tr>
+                        <td>${scannedBarcode}</td>
+                        <td>${itemSku}</td>
+                        <td class='item_weight'>${weightInKgs}</td>
+                        <td><span class="remove-button" onclick="removeRow(this)">Remove</span></td>
+                    </tr>
+                  `;
+
+                  $('#tableBody').append(newRow);
+
+                  calculateTotalWeight();
+
+                  $(this).val(''); // Clear the input field
+                  $('#barcodeInput').focus();
+            });      
+          
+             
+
+            function calculateTotalWeight() {
+              console.log("calculateTotalWeight called");
+              let totalItemWeight = 0;
+              let totalItemPcs = 0;
+              $('td.item_weight').each(function() {
+                  totalItemWeight += parseFloat($(this).text());
+              });
+              
+              totalItemPcs = $('#barcodeInputTable >tbody >tr').length;
+              console.log("totalWeight", totalWeight);
+              console.log("Table Rows", totalItemPcs);
+
+              $('#totalPcs').text(totalItemPcs);
+              $('#totalWeight').text(totalItemWeight.toFixed(3));
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+# pip3 install jusText
+import justext
+
+html = '<p>If you can’t keep your eyes open any longer, simply lay your book on the shelf. Hide smaller items that normally gather dust in the drawer. Looks great with the other furniture in the TRYSIL series.\n</p><div class="prodInfoLeft">\n<div id="goodToKnowPart" class=" prodInfoDis prodInfoSub">\n<div id="goodToKnow" class="texts"><span class="&quot;gtk-header&quot;"><strong>Combine and complete</strong></span>\nCombines with other furniture in the TRYSIL series.</div>\n</div>\n<div id="careInstructionsPart" class="productInformation prodInfoDis prodInfoSub">\n<div id="goodtoknowheader1" class="productsubheadline" role="heading">care instructions</div>\n<div id="careInst" class="texts Wdth">Wipe clean with a cloth dampened in a mild cleaner.\nWipe dry with a clean cloth.</div>\n</div>\n</div>\n&nbsp;\n<div class="prodInfoRight">\n<div id="productDimensionsContainer">\n<div id="measuresPart" class="productInformation prodInfoSub">\n<div id="assembledSize" class="productsubheadline" role="heading">Product dimensions</div>\n<div id="metric" class="texts">Width: 45 cm\nDepth: 40 cm\nHeight: 53 cm</div>\n<div id="requiresAssembly" class="imagetext"><span class="subTxt">This product requires assembly</span></div>\n<div>\n<div id="measurementHead" class="productsubheadline" role="heading">Product description</div>\n<div id="custMaterials" class="texts">Basematerial: Particleboard, Foil, ABS plastic\nBack panel: Fibreboard\nDrawer back/ Drawer sides: Particleboard, Foil\nDrawer bottom: Fibreboard, Paint\nLeg: Steel, Epoxy/polyester powder coating</div>\n<div>\n<div id="package_text"><span id="numberOfPackages">Packages:</span>&nbsp;1</div>\n<div id="packageTabTable">\n<table class="packages-specification-table">\n<tbody>\n<tr>\n<th>Article Number</th>\n<th>Packages</th>\n<th>Width</th>\n<th>Height</th>\n<th>Length</th>\n<th>Diameter</th>\n<th>Weight</th>\n</tr>\n<tr>\n<td>50355748</td>\n<td>1</td>\n<td>42 cm</td>\n<td>11 cm</td>\n<td>47 cm</td>\n<td>-</td>\n<td>11.60 kg</td>\n</tr>\n</tbody>\n</table>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div><p></p>'
+
+text = justext.justext(html, justext.get_stoplist("English"))
+et = ''
+for x in text:
+    et += x.text + " "
+    
+print (et)

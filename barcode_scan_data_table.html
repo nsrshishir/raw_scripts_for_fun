@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Barcode Scanner Table</title>
+  <style>
+      .tooltip-container {
+        position: relative;
+      }
+
+      .tooltip-button::after {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      .tooltip::after {
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s, transform 0.3s;
+        white-space: nowrap;
+      }
+
+      .tooltip-container:hover::after .tooltip {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+
+
+  </style>
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<!-- DataTables JavaScript -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+</head>
+
+<body>
+<div class="tooltip-container">
+  <button class="tooltip-button">Hover Me</button>
+  <div class="tooltip">This is a tooltip</div>
+</div>
+
+
+</body>
+
+</html>
